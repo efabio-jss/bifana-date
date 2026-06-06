@@ -20,7 +20,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ============ SCENES ============ */
+  
   .scene {
     min-height: 100vh;
     width: 100%;
@@ -31,7 +31,7 @@
     overflow: hidden;
   }
 
-  /* ============ SCENE 1 — GARDEN ============ */
+  
   #scene1 {
     background:
       radial-gradient(ellipse at 80% 15%, rgba(60, 40, 80, 0.4) 0%, transparent 50%),
@@ -208,7 +208,7 @@
     50% { transform: translateY(8px); }
   }
 
-  /* ============ FLOWER ANIMATIONS ============ */
+  
   .stem {
     fill: none;
     stroke-width: 2.4;
@@ -276,7 +276,7 @@
     50%      { transform: rotate(2deg); }
   }
 
-  /* ============ SCENE 2 — RATING CARD ============ */
+  
   #scene2 {
     background:
       radial-gradient(ellipse at 50% 0%, rgba(74, 42, 92, 0.55) 0%, transparent 55%),
@@ -460,7 +460,7 @@
     transform: none;
   }
 
-  /* ============ SCENE 3 — THANK YOU ============ */
+  
   #scene3 {
     background:
       radial-gradient(ellipse at center, #2a1a3e 0%, #14081e 50%, #0a0a1e 100%);
@@ -525,7 +525,7 @@
 </head>
 <body>
 
-<!-- ============================ SCENE 1 ============================ -->
+
 <section class="scene" id="scene1">
   <div class="sky" id="sky">
     <svg class="moon" viewBox="0 0 64 64">
@@ -562,7 +562,7 @@
   </button>
 </section>
 
-<!-- ============================ SCENE 2 ============================ -->
+
 <section class="scene" id="scene2">
   <div class="card">
     <h2>Bifana Date</h2>
@@ -575,7 +575,7 @@
     <textarea id="comment" placeholder="Be honest... or be kind... or both ✨" rows="4"></textarea>
     <button class="submit" id="submitBtn" type="button">Send Review</button>
   </div>
-  <!-- Shared gradient defs for stars -->
+  
   <svg width="0" height="0" style="position:absolute;width:0;height:0;" aria-hidden="true">
     <defs>
       <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -587,7 +587,7 @@
   </svg>
 </section>
 
-<!-- ============================ SCENE 3 ============================ -->
+
 <section class="scene" id="scene3">
   <div class="thanks">
     <div class="bouquet">💐</div>
@@ -598,19 +598,19 @@
 </section>
 
 <script>
-  // ============================================================
-  //  PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW
-  // ============================================================
+  
+  
+  
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx88jeOk8kR7ocAGvNrCh9zsD84TCWWMqQrfkTF6je0nuasdEWlyklwhyPpnOQkbLc/exec';
-  // ============================================================
+  
 
-  /* ---------- CONTINUE BUTTON ---------- */
+  
   document.getElementById('scrollHint').addEventListener('click', () => {
     const target = document.getElementById('scene2');
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  /* ---------- STARRY SKY ---------- */
+  
   const sky = document.getElementById('sky');
   const STAR_COUNT = 58;
   for (let i = 0; i < STAR_COUNT; i++) {
@@ -623,7 +623,7 @@
     sky.appendChild(s);
   }
 
-  /* ---------- FIREFLIES ---------- */
+  
   const scene1 = document.getElementById('scene1');
   for (let i = 0; i < 14; i++) {
     const f = document.createElement('div');
@@ -635,17 +635,17 @@
     scene1.appendChild(f);
   }
 
-  /* ============================================================
-     FLOWER BUILDER — hand-tuned botanical SVG paths
-     ============================================================ */
+  
+     
+     
 
-  // A single petal, base at (0,0), tip pointing up (-y), length 50.
-  // Built from cubic beziers: tapered base → broad belly → soft tip.
+  
+  
   const PETAL_PATH = "M 0 0 C -5 -8 -13 -15 -15 -28 C -16 -39 -10 -47 0 -49 C 10 -47 16 -39 15 -28 C 13 -15 5 -8 0 0 Z";
-  // Subtle central vein for each petal.
+  
   const VEIN_PATH  = "M 0 -3 C -1 -18 1 -32 0 -44";
 
-  // Naturalistic leaf shape — pointed tip, slight curve.
+  
   const LEAF_PATH  = "M 0 0 C 4 -9 18 -12 30 -5 C 33 -1 33 1 30 5 C 18 12 4 9 0 0 Z";
   const LEAF_VEIN  = "M 1 0 C 10 -1 22 0 29 1";
 
@@ -722,7 +722,7 @@
     }
   ];
 
-  // Cubic bezier point at parameter t — for placing leaves on stems.
+  
   function bezierPt(p0, p1, p2, p3, t) {
     const mt = 1 - t;
     const x = mt*mt*mt*p0[0] + 3*mt*mt*t*p1[0] + 3*mt*t*t*p2[0] + t*t*t*p3[0];
@@ -732,18 +732,18 @@
 
   function buildDefs() {
     let defs = '<defs>';
-    // shared glow blur
+    
     defs += '<filter id="bloomGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>';
-    // stem gradient
+    
     defs += '<linearGradient id="stemGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#1c3a20"/><stop offset="60%" stop-color="#2f5a30"/><stop offset="100%" stop-color="#558a48"/></linearGradient>';
-    // leaf gradient
+    
     defs += '<linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3a6a3a"/><stop offset="100%" stop-color="#1d3d20"/></linearGradient>';
-    // stamen gradient
+    
     defs += '<radialGradient id="stamenGrad" cx="40%" cy="40%"><stop offset="0%" stop-color="#fff3a0"/><stop offset="60%" stop-color="#e8c45a"/><stop offset="100%" stop-color="#a87810"/></radialGradient>';
-    // ground gradient
+    
     defs += '<radialGradient id="groundGrad" cx="50%" cy="40%"><stop offset="0%" stop-color="#1a2a14"/><stop offset="100%" stop-color="#0a1208"/></radialGradient>';
 
-    // per-flower gradients + glow
+    
     flowers.forEach(f => {
       const p = f.palette;
       defs += `<radialGradient id="petal-${f.id}-outer" cx="50%" cy="80%"><stop offset="0%" stop-color="${p.outerLight}"/><stop offset="100%" stop-color="${p.outerDark}"/></radialGradient>`;
@@ -764,14 +764,14 @@
 
     let out = '';
 
-    // soft glow behind bloom
+    
     out += `<circle cx="${bx}" cy="${by}" r="${42 * f.scale}" fill="url(#glow-${f.id})" filter="url(#bloomGlow)"/>`;
 
-    // stem
+    
     const stemD = `M ${sx} ${sy} C ${c1[0]} ${c1[1]}, ${c2[0]} ${c2[1]}, ${bx} ${by + 6}`;
     out += `<path class="stem" d="${stemD}" stroke="url(#stemGrad)" pathLength="100" style="animation-delay: ${f.stemDelay}s"/>`;
 
-    // leaves
+    
     f.leaves.forEach((lf, i) => {
       const [lx, ly] = bezierPt([sx, sy], c1, c2, [bx, by], lf.t);
       const sc = f.scale * (0.72 + i * 0.05);
@@ -784,11 +784,11 @@
       out += `</g>`;
     });
 
-    // bloom group — sits at bloom center
+    
     out += `<g transform="translate(${bx},${by})">`;
     out += `  <g class="bloom" style="animation-delay: ${f.bloomDelay}s;">`;
 
-    // ---- OUTER PETALS (7-8, largest) ----
+    
     const outerCount = f.scale >= 1.2 ? 8 : (f.scale >= 1.0 ? 7 : 7);
     out += `<g class="breathe-outer">`;
     for (let i = 0; i < outerCount; i++) {
@@ -802,7 +802,7 @@
     }
     out += `</g>`;
 
-    // ---- MIDDLE PETALS (5-6) — offset to interleave ----
+    
     const midCount = f.scale >= 1.2 ? 6 : 5;
     const midOffset = (360 / outerCount) / 2;
     out += `<g class="breathe-mid">`;
@@ -815,7 +815,7 @@
     }
     out += `</g>`;
 
-    // ---- INNER PETALS (4-5) — tightly clustered ----
+    
     const innerCount = f.scale >= 1.2 ? 5 : 4;
     out += `<g class="breathe-inner">`;
     for (let i = 0; i < innerCount; i++) {
@@ -826,7 +826,7 @@
     }
     out += `</g>`;
 
-    // ---- STAMENS ----
+    
     out += `<g class="stamens">`;
     // outer ring of tiny brown dots (anthers)
     const ringR = 7.5 * f.scale;
@@ -846,7 +846,7 @@
       const y = Math.sin(a) * innerR;
       out += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${1.7 * f.scale}" fill="url(#stamenGrad)"/>`;
     }
-    // center pistil
+    
     out += `<circle cx="0" cy="0" r="${2.4 * f.scale}" fill="#c88e1a"/>`;
     out += `<circle cx="0" cy="0" r="${1.1 * f.scale}" fill="#fff3a0" opacity="0.9"/>`;
     out += `</g>`;
@@ -873,11 +873,11 @@
     return out;
   }
 
-  // assemble the garden SVG
+  
   let svgInner = buildDefs();
   svgInner += buildGround();
-  // sort flowers so smaller/outer ones go behind first? Actually paint order: outer flowers behind center.
-  // Order: 4, 5, 2, 3, 1 (center on top)
+  
+  
   const renderOrder = ['f4', 'f5', 'f2', 'f3', 'f1'];
   renderOrder.forEach(id => {
     const f = flowers.find(x => x.id === id);
@@ -887,9 +887,9 @@
   const gardenEl = document.getElementById('garden');
   gardenEl.innerHTML = `<svg viewBox="0 0 400 520" preserveAspectRatio="xMidYEnd meet" xmlns="http://www.w3.org/2000/svg">${svgInner}</svg>`;
 
-  /* ============================================================
-     STAR RATING
-     ============================================================ */
+  
+     
+     
   const ratingLabels = [
     '',
     'Are you Autistic?',
@@ -903,7 +903,7 @@
   const starsEl = document.getElementById('stars');
   const ratingLabelEl = document.getElementById('ratingLabel');
 
-  // 5-pointed star path
+  
   const STAR_PATH = "M12 2.5 L14.6 9 L21.7 9.6 L16.3 14.3 L18 21.2 L12 17.5 L6 21.2 L7.7 14.3 L2.3 9.6 L9.4 9 Z";
 
   for (let i = 1; i <= 5; i++) {
@@ -944,9 +944,9 @@
     Array.from(starsEl.children).forEach(s => s.classList.remove('preview'));
   }
 
-  /* ============================================================
-     SUBMIT
-     ============================================================ */
+  
+     
+     
   document.getElementById('submitBtn').addEventListener('click', async () => {
     const btn = document.getElementById('submitBtn');
     const comment = document.getElementById('comment').value.trim();
