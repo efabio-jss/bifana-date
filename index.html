@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0a1e">
+<title>For You ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: #0a0a1e;
+    color: #f5e8d0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ SCENES ============ */
+  .scene {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* ============ SCENE 1 — GARDEN ============ */
+  #scene1 {
+    background:
+      radial-gradient(ellipse at 80% 15%, rgba(60, 40, 80, 0.4) 0%, transparent 50%),
+      linear-gradient(180deg, #0a0a1e 0%, #0d1830 35%, #0e2218 80%, #0d2010 100%);
+    padding: 1.8rem 1rem 0;
+  }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 5.5vw, 2.1rem);
+    color: #e8c98a;
+    text-align: center;
+    text-shadow: 0 0 24px rgba(232, 201, 138, 0.35), 0 1px 0 rgba(0,0,0,0.4);
+    opacity: 0;
+    animation: fadeInDown 2.2s ease-out 0.3s forwards;
+    letter-spacing: 0.015em;
+    z-index: 6;
+    position: relative;
+    line-height: 1.3;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sky {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 65%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 4px #fff;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  .star.big { width: 3px; height: 3px; box-shadow: 0 0 6px #fff; }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+
+  .moon {
+    position: absolute;
+    top: 8%;
+    right: 10%;
+    width: 64px;
+    height: 64px;
+    z-index: 2;
+  }
+
+  .firefly {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle, #ffe79a 0%, rgba(255,217,122,0.6) 30%, rgba(255,217,122,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 10s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  @keyframes float {
+    0%   { transform: translate(0, 0); opacity: 0; }
+    15%  { opacity: 0.9; }
+    35%  { transform: translate(18px, -22px); opacity: 0.7; }
+    55%  { transform: translate(-12px, -42px); opacity: 1; }
+    75%  { transform: translate(22px, -58px); opacity: 0.5; }
+    100% { transform: translate(0, -80px); opacity: 0; }
+  }
+
+  .garden {
+    flex: 1;
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .garden svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  .message {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 4.4vw, 1.5rem);
+    text-align: center;
+    color: #f5e8d0;
+    padding: 1.2rem 1.5rem 0.4rem;
+    opacity: 0;
+    animation: fadeInUp 2.5s ease-out 5s forwards;
+    z-index: 5;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .message strong {
+    color: #e8c98a;
+    font-style: normal;
+    font-weight: 700;
+    text-shadow: 0 0 18px rgba(232, 201, 138, 0.6);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #e8c98a;
+    text-align: center;
+    padding: 1rem 1.5rem 1.8rem;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-out 6.5s forwards;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    z-index: 5;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    min-height: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.25s ease, transform 0.2s ease;
+  }
+
+  .scroll-hint:hover,
+  .scroll-hint:active {
+    color: #fff3cc;
+    transform: translateY(2px);
+  }
+
+  .scroll-hint:focus-visible {
+    outline: 2px solid rgba(232, 201, 138, 0.6);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  .arrow {
+    display: block;
+    margin: 0.5rem auto 0;
+    width: 22px;
+    height: 22px;
+    animation: bounce 1.8s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ============ FLOWER ANIMATIONS ============ */
+  .stem {
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawStem 2.5s ease-out forwards;
+  }
+
+  @keyframes drawStem {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .leaf-wrap {
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
+    transform: scale(0);
+    opacity: 0;
+    animation: leafPop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes leafPop {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .bloom {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(0);
+    opacity: 0;
+    animation: bloomIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes bloomIn {
+    0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
+    60%  { opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .breathe-outer, .breathe-mid, .breathe-inner {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .breathe-outer { animation: breathe 5.2s ease-in-out infinite; }
+  .breathe-mid   { animation: breathe 4.6s ease-in-out infinite 0.6s; }
+  .breathe-inner { animation: breathe 4.0s ease-in-out infinite 1.1s; }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(0.985); }
+    50%      { transform: scale(1.018); }
+  }
+
+  .grass-blade {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: sway 4s ease-in-out infinite;
+  }
+  .grass-blade:nth-child(odd) { animation-duration: 5s; animation-delay: 0.5s; }
+  .grass-blade:nth-child(3n) { animation-duration: 4.5s; animation-delay: 1s; }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50%      { transform: rotate(2deg); }
+  }
+
+  /* ============ SCENE 2 — RATING CARD ============ */
+  #scene2 {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(74, 42, 92, 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(40, 20, 50, 0.4) 0%, transparent 60%),
+      linear-gradient(180deg, #14081e 0%, #0a0a1e 100%);
+    justify-content: center;
+    padding: 3rem 1rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.025) 100%);
+    backdrop-filter: blur(22px) saturate(1.1);
+    -webkit-backdrop-filter: blur(22px) saturate(1.1);
+    border: 1px solid rgba(232, 201, 138, 0.18);
+    border-radius: 26px;
+    padding: 2.2rem 1.6rem;
+    box-shadow:
+      0 24px 72px rgba(0, 0, 0, 0.55),
+      0 0 80px rgba(212, 98, 123, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  .card h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-align: center;
+    color: #f5e8d0;
+    font-size: clamp(1.65rem, 6.5vw, 2.1rem);
+    letter-spacing: 0.01em;
+  }
+
+  .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #e8c98a;
+    text-align: center;
+    margin-top: 0.25rem;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(232, 201, 138, 0.45) 50%, transparent 100%);
+    margin: 1.6rem 0 1.4rem;
+  }
+
+  .label {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #e8a4b8;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .stars {
+    display: flex;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .star-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem;
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .star-btn svg {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .star-btn svg path {
+    fill: #1d1d2e;
+    stroke: #3a3a52;
+    stroke-width: 1.2;
+    stroke-linejoin: round;
+    transition: fill 0.25s ease, stroke 0.25s ease, filter 0.25s ease;
+  }
+
+  .star-btn.preview svg path {
+    fill: #5a4830;
+    stroke: #8a6e3a;
+  }
+
+  .star-btn.active svg path {
+    fill: url(#goldGrad);
+    stroke: #f0d68a;
+    filter: drop-shadow(0 0 10px rgba(232, 201, 138, 0.75));
+  }
+
+  .star-btn.active svg {
+    transform: scale(1.12);
+  }
+
+  .rating-label {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #f5c6d8;
+    height: 1.6rem;
+    margin-bottom: 1.4rem;
+    font-size: 1.05rem;
+    transition: opacity 0.3s;
+    min-height: 1.6rem;
+  }
+
+  textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(232, 201, 138, 0.22);
+    border-radius: 14px;
+    color: #f5e8d0;
+    padding: 0.95rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    resize: vertical;
+    min-height: 110px;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  }
+
+  textarea::placeholder {
+    color: rgba(245, 232, 208, 0.42);
+    font-style: italic;
+  }
+
+  textarea:focus {
+    border-color: rgba(232, 201, 138, 0.6);
+    box-shadow: 0 0 24px rgba(232, 201, 138, 0.15);
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .submit {
+    margin-top: 1.5rem;
+    width: 100%;
+    background: linear-gradient(135deg, #d4627b 0%, #e89564 50%, #e8c98a 100%);
+    border: none;
+    color: #1a0a14;
+    padding: 1rem;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    min-height: 52px;
+    box-shadow:
+      0 10px 28px rgba(212, 98, 123, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .submit:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 14px 36px rgba(212, 98, 123, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .submit:active { transform: translateY(0); }
+
+  .submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* ============ SCENE 3 — THANK YOU ============ */
+  #scene3 {
+    background:
+      radial-gradient(ellipse at center, #2a1a3e 0%, #14081e 50%, #0a0a1e 100%);
+    display: none;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  #scene3.show { display: flex; }
+
+  .thanks {
+    margin: auto 0;
+    animation: fadeInUp 1.2s ease-out forwards;
+  }
+
+  .bouquet {
+    font-size: 5.5rem;
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(232, 164, 184, 0.5));
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14%      { transform: scale(1.2); }
+    28%      { transform: scale(1); }
+    42%      { transform: scale(1.14); }
+    70%      { transform: scale(1); }
+  }
+
+  .thanks h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    color: #e8c98a;
+    margin: 1.4rem 0 1rem;
+    font-weight: 700;
+    text-shadow: 0 0 24px rgba(232, 201, 138, 0.35);
+  }
+
+  .thanks p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #f5e8d0;
+    font-size: 1.18rem;
+    margin: 0.7rem auto;
+    line-height: 1.55;
+    max-width: 400px;
+  }
+
+  .thanks .playful {
+    color: #f5c6d8;
+    margin-top: 1.6rem;
+  }
+
+  /* Hide scenes after submit */
+  body.submitted #scene1,
+  body.submitted #scene2 {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ SCENE 1 ============================ -->
+<section class="scene" id="scene1">
+  <div class="sky" id="sky">
+    <svg class="moon" viewBox="0 0 64 64">
+      <defs>
+        <radialGradient id="moonGrad" cx="38%" cy="38%">
+          <stop offset="0%"  stop-color="#fffaf0"/>
+          <stop offset="55%" stop-color="#f3e3bf"/>
+          <stop offset="100%" stop-color="#cba972"/>
+        </radialGradient>
+        <radialGradient id="moonHalo" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#fff5cc" stop-opacity="0.55"/>
+          <stop offset="60%" stop-color="#fff0b8" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#fff0b8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="30" fill="url(#moonHalo)"/>
+      <circle cx="32" cy="32" r="22" fill="url(#moonGrad)"/>
+      <circle cx="26" cy="28" r="3.2" fill="#b39058" opacity="0.32"/>
+      <circle cx="38" cy="34" r="2.2" fill="#b39058" opacity="0.28"/>
+      <circle cx="33" cy="23" r="1.6" fill="#b39058" opacity="0.25"/>
+      <circle cx="29" cy="40" r="1.2" fill="#b39058" opacity="0.22"/>
+    </svg>
+  </div>
+
+  <div class="garden" id="garden"></div>
+
+  <p class="message">I couldn't find flowers so I <strong>built</strong> them <strong>for You</strong></p>
+
+  <button type="button" class="scroll-hint" id="scrollHint" aria-label="Continue to next scene">
+    Continue
+    <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </button>
+</section>
+
+<!-- ============================ SCENE 2 ============================ -->
+<section class="scene" id="scene2">
+  <div class="card">
+    <h2>Bifana Date</h2>
+    <p class="subtitle">Official Evaluation Form</p>
+    <div class="divider"></div>
+    <p class="label">Please rate our date</p>
+    <div class="stars" id="stars"></div>
+    <p class="rating-label" id="ratingLabel">&nbsp;</p>
+    <p class="label">Comments &amp; Suggestions</p>
+    <textarea id="comment" placeholder="Be honest... or be kind... or both ✨" rows="4"></textarea>
+    <button class="submit" id="submitBtn" type="button">Send Review</button>
+  </div>
+  <!-- Shared gradient defs for stars -->
+  <svg width="0" height="0" style="position:absolute;width:0;height:0;" aria-hidden="true">
+    <defs>
+      <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"  stop-color="#fff3cc"/>
+        <stop offset="50%" stop-color="#e8c98a"/>
+        <stop offset="100%" stop-color="#b88a3e"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</section>
+
+<!-- ============================ SCENE 3 ============================ -->
+<section class="scene" id="scene3">
+  <div class="thanks">
+    <div class="bouquet">💐</div>
+    <h2>Thank you!</h2>
+    <p>Your feedback has been noted with great care.</p>
+    <p class="playful">See you at the next date? 👀</p>
+  </div>
+</section>
+
+<script>
+  // ============================================================
+  //  PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW
+  // ============================================================
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx88jeOk8kR7ocAGvNrCh9zsD84TCWWMqQrfkTF6je0nuasdEWlyklwhyPpnOQkbLc/exec';
+  // ============================================================
+
+  /* ---------- CONTINUE BUTTON ---------- */
+  document.getElementById('scrollHint').addEventListener('click', () => {
+    const target = document.getElementById('scene2');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* ---------- STARRY SKY ---------- */
+  const sky = document.getElementById('sky');
+  const STAR_COUNT = 58;
+  for (let i = 0; i < STAR_COUNT; i++) {
+    const s = document.createElement('div');
+    s.className = 'star' + (Math.random() > 0.78 ? ' big' : '');
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.top  = (Math.random() * 60) + '%';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    s.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+    sky.appendChild(s);
+  }
+
+  /* ---------- FIREFLIES ---------- */
+  const scene1 = document.getElementById('scene1');
+  for (let i = 0; i < 14; i++) {
+    const f = document.createElement('div');
+    f.className = 'firefly';
+    f.style.left = (5 + Math.random() * 90) + '%';
+    f.style.top  = (42 + Math.random() * 48) + '%';
+    f.style.animationDelay = (Math.random() * 10) + 's';
+    f.style.animationDuration = (7 + Math.random() * 6) + 's';
+    scene1.appendChild(f);
+  }
+
+  /* ============================================================
+     FLOWER BUILDER — hand-tuned botanical SVG paths
+     ============================================================ */
+
+  // A single petal, base at (0,0), tip pointing up (-y), length 50.
+  // Built from cubic beziers: tapered base → broad belly → soft tip.
+  const PETAL_PATH = "M 0 0 C -5 -8 -13 -15 -15 -28 C -16 -39 -10 -47 0 -49 C 10 -47 16 -39 15 -28 C 13 -15 5 -8 0 0 Z";
+  // Subtle central vein for each petal.
+  const VEIN_PATH  = "M 0 -3 C -1 -18 1 -32 0 -44";
+
+  // Naturalistic leaf shape — pointed tip, slight curve.
+  const LEAF_PATH  = "M 0 0 C 4 -9 18 -12 30 -5 C 33 -1 33 1 30 5 C 18 12 4 9 0 0 Z";
+  const LEAF_VEIN  = "M 1 0 C 10 -1 22 0 29 1";
+
+  const flowers = [
+    { // 1 — CENTER, largest deep rose
+      id: 'f1',
+      base: [200, 482], bloom: [200, 178],
+      stemCtrl: [[193, 400], [207, 280]],
+      scale: 1.4,
+      palette: {
+        outerLight: '#f5c6d8', outerDark: '#a8425a',
+        midLight:   '#f7d2dd', midDark:   '#c0567a',
+        innerLight: '#fde0ea', innerDark: '#d4627b',
+        vein: '#7a2d44', glow: '#d4627b'
+      },
+      stemDelay: 0.5, bloomDelay: 2.7,
+      leaves: [ { t: 0.32, side: -1, angle: -55 }, { t: 0.62, side: 1, angle: 55 } ]
+    },
+    { // 2 — LEFT, peach
+      id: 'f2',
+      base: [186, 482], bloom: [128, 222],
+      stemCtrl: [[176, 388], [148, 296]],
+      scale: 1.05,
+      palette: {
+        outerLight: '#fde8d0', outerDark: '#d49060',
+        midLight:   '#fef0dc', midDark:   '#e0a578',
+        innerLight: '#fff5e6', innerDark: '#f0c4a0',
+        vein: '#8a4e22', glow: '#e8a875'
+      },
+      stemDelay: 0.85, bloomDelay: 3.05,
+      leaves: [ { t: 0.34, side: 1, angle: 35 }, { t: 0.66, side: -1, angle: -65 } ]
+    },
+    { // 3 — RIGHT, lavender
+      id: 'f3',
+      base: [214, 482], bloom: [272, 222],
+      stemCtrl: [[224, 388], [252, 296]],
+      scale: 1.05,
+      palette: {
+        outerLight: '#d8c8f0', outerDark: '#8868b0',
+        midLight:   '#e2d4f4', midDark:   '#a088c8',
+        innerLight: '#ede0fa', innerDark: '#b8a0d4',
+        vein: '#4a3068', glow: '#b8a0d4'
+      },
+      stemDelay: 1.05, bloomDelay: 3.25,
+      leaves: [ { t: 0.34, side: -1, angle: -35 }, { t: 0.66, side: 1, angle: 65 } ]
+    },
+    { // 4 — FAR LEFT, pale pink
+      id: 'f4',
+      base: [178, 482], bloom: [62, 270],
+      stemCtrl: [[150, 410], [88, 352]],
+      scale: 0.82,
+      palette: {
+        outerLight: '#f5dce8', outerDark: '#c87a98',
+        midLight:   '#fae4ec', midDark:   '#d890aa',
+        innerLight: '#fdeef3', innerDark: '#e8a0bf',
+        vein: '#7a3a55', glow: '#e8a0bf'
+      },
+      stemDelay: 1.25, bloomDelay: 3.45,
+      leaves: [ { t: 0.4, side: 1, angle: 20 }, { t: 0.7, side: -1, angle: -75 } ]
+    },
+    { // 5 — FAR RIGHT, cream/white blush
+      id: 'f5',
+      base: [222, 482], bloom: [338, 270],
+      stemCtrl: [[252, 410], [312, 352]],
+      scale: 0.82,
+      palette: {
+        outerLight: '#ffffff', outerDark: '#e8c8d2',
+        midLight:   '#fff8f8', midDark:   '#f0d8e0',
+        innerLight: '#ffffff', innerDark: '#f0d8e0',
+        vein: '#a07a82', glow: '#f0d8e0'
+      },
+      stemDelay: 1.45, bloomDelay: 3.65,
+      leaves: [ { t: 0.4, side: -1, angle: -20 }, { t: 0.7, side: 1, angle: 75 } ]
+    }
+  ];
+
+  // Cubic bezier point at parameter t — for placing leaves on stems.
+  function bezierPt(p0, p1, p2, p3, t) {
+    const mt = 1 - t;
+    const x = mt*mt*mt*p0[0] + 3*mt*mt*t*p1[0] + 3*mt*t*t*p2[0] + t*t*t*p3[0];
+    const y = mt*mt*mt*p0[1] + 3*mt*mt*t*p1[1] + 3*mt*t*t*p2[1] + t*t*t*p3[1];
+    return [x, y];
+  }
+
+  function buildDefs() {
+    let defs = '<defs>';
+    // shared glow blur
+    defs += '<filter id="bloomGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>';
+    // stem gradient
+    defs += '<linearGradient id="stemGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#1c3a20"/><stop offset="60%" stop-color="#2f5a30"/><stop offset="100%" stop-color="#558a48"/></linearGradient>';
+    // leaf gradient
+    defs += '<linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3a6a3a"/><stop offset="100%" stop-color="#1d3d20"/></linearGradient>';
+    // stamen gradient
+    defs += '<radialGradient id="stamenGrad" cx="40%" cy="40%"><stop offset="0%" stop-color="#fff3a0"/><stop offset="60%" stop-color="#e8c45a"/><stop offset="100%" stop-color="#a87810"/></radialGradient>';
+    // ground gradient
+    defs += '<radialGradient id="groundGrad" cx="50%" cy="40%"><stop offset="0%" stop-color="#1a2a14"/><stop offset="100%" stop-color="#0a1208"/></radialGradient>';
+
+    // per-flower gradients + glow
+    flowers.forEach(f => {
+      const p = f.palette;
+      defs += `<radialGradient id="petal-${f.id}-outer" cx="50%" cy="80%"><stop offset="0%" stop-color="${p.outerLight}"/><stop offset="100%" stop-color="${p.outerDark}"/></radialGradient>`;
+      defs += `<radialGradient id="petal-${f.id}-mid"   cx="50%" cy="80%"><stop offset="0%" stop-color="${p.midLight}"/><stop offset="100%" stop-color="${p.midDark}"/></radialGradient>`;
+      defs += `<radialGradient id="petal-${f.id}-inner" cx="50%" cy="75%"><stop offset="0%" stop-color="${p.innerLight}"/><stop offset="100%" stop-color="${p.innerDark}"/></radialGradient>`;
+      defs += `<radialGradient id="glow-${f.id}" cx="50%" cy="50%"><stop offset="0%" stop-color="${p.glow}" stop-opacity="0.55"/><stop offset="100%" stop-color="${p.glow}" stop-opacity="0"/></radialGradient>`;
+    });
+
+    defs += '</defs>';
+    return defs;
+  }
+
+  function buildFlower(f) {
+    const [bx, by] = f.bloom;
+    const [sx, sy] = f.base;
+    const [c1, c2] = f.stemCtrl;
+    const p = f.palette;
+
+    let out = '';
+
+    // soft glow behind bloom
+    out += `<circle cx="${bx}" cy="${by}" r="${42 * f.scale}" fill="url(#glow-${f.id})" filter="url(#bloomGlow)"/>`;
+
+    // stem
+    const stemD = `M ${sx} ${sy} C ${c1[0]} ${c1[1]}, ${c2[0]} ${c2[1]}, ${bx} ${by + 6}`;
+    out += `<path class="stem" d="${stemD}" stroke="url(#stemGrad)" pathLength="100" style="animation-delay: ${f.stemDelay}s"/>`;
+
+    // leaves
+    f.leaves.forEach((lf, i) => {
+      const [lx, ly] = bezierPt([sx, sy], c1, c2, [bx, by], lf.t);
+      const sc = f.scale * (0.72 + i * 0.05);
+      const sx_sign = lf.side; // mirror for left/right
+      out += `<g transform="translate(${lx},${ly}) rotate(${lf.angle}) scale(${sc * sx_sign}, ${sc})">`;
+      out += `  <g class="leaf-wrap" style="animation-delay: ${f.stemDelay + 1.9 + i * 0.18}s;">`;
+      out += `    <path d="${LEAF_PATH}" fill="url(#leafGrad)" stroke="#1d3d20" stroke-width="0.4"/>`;
+      out += `    <path d="${LEAF_VEIN}" stroke="#0e2812" stroke-width="0.45" fill="none" opacity="0.7"/>`;
+      out += `  </g>`;
+      out += `</g>`;
+    });
+
+    // bloom group — sits at bloom center
+    out += `<g transform="translate(${bx},${by})">`;
+    out += `  <g class="bloom" style="animation-delay: ${f.bloomDelay}s;">`;
+
+    // ---- OUTER PETALS (7-8, largest) ----
+    const outerCount = f.scale >= 1.2 ? 8 : (f.scale >= 1.0 ? 7 : 7);
+    out += `<g class="breathe-outer">`;
+    for (let i = 0; i < outerCount; i++) {
+      const angle = (360 / outerCount) * i + (f.id === 'f3' ? 8 : (f.id === 'f5' ? -6 : 0));
+      // slight per-petal color jitter via opacity
+      const op = 0.88 + ((i % 3) * 0.04);
+      out += `<g transform="rotate(${angle}) scale(${f.scale * 1.05})">`;
+      out += `  <path d="${PETAL_PATH}" fill="url(#petal-${f.id}-outer)" stroke="${p.outerDark}" stroke-width="0.18" opacity="${op}"/>`;
+      out += `  <path d="${VEIN_PATH}" stroke="${p.vein}" stroke-width="0.35" fill="none" opacity="0.32"/>`;
+      out += `</g>`;
+    }
+    out += `</g>`;
+
+    // ---- MIDDLE PETALS (5-6) — offset to interleave ----
+    const midCount = f.scale >= 1.2 ? 6 : 5;
+    const midOffset = (360 / outerCount) / 2;
+    out += `<g class="breathe-mid">`;
+    for (let i = 0; i < midCount; i++) {
+      const angle = (360 / midCount) * i + midOffset + 3;
+      out += `<g transform="rotate(${angle}) scale(${f.scale * 0.72})">`;
+      out += `  <path d="${PETAL_PATH}" fill="url(#petal-${f.id}-mid)" stroke="${p.midDark}" stroke-width="0.2" opacity="0.96"/>`;
+      out += `  <path d="${VEIN_PATH}" stroke="${p.vein}" stroke-width="0.35" fill="none" opacity="0.3"/>`;
+      out += `</g>`;
+    }
+    out += `</g>`;
+
+    // ---- INNER PETALS (4-5) — tightly clustered ----
+    const innerCount = f.scale >= 1.2 ? 5 : 4;
+    out += `<g class="breathe-inner">`;
+    for (let i = 0; i < innerCount; i++) {
+      const angle = (360 / innerCount) * i + 18;
+      out += `<g transform="rotate(${angle}) scale(${f.scale * 0.44})">`;
+      out += `  <path d="${PETAL_PATH}" fill="url(#petal-${f.id}-inner)" opacity="0.98"/>`;
+      out += `</g>`;
+    }
+    out += `</g>`;
+
+    // ---- STAMENS ----
+    out += `<g class="stamens">`;
+    // outer ring of tiny brown dots (anthers)
+    const ringR = 7.5 * f.scale;
+    const ringCount = 14;
+    for (let i = 0; i < ringCount; i++) {
+      const a = (i / ringCount) * Math.PI * 2;
+      const x = Math.cos(a) * ringR;
+      const y = Math.sin(a) * ringR;
+      out += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${0.85 * f.scale}" fill="#6a3e10" opacity="0.85"/>`;
+    }
+    // inner cluster of golden stamens
+    const innerR = 3.4 * f.scale;
+    const innerCnt = 7;
+    for (let i = 0; i < innerCnt; i++) {
+      const a = (i / innerCnt) * Math.PI * 2;
+      const x = Math.cos(a) * innerR;
+      const y = Math.sin(a) * innerR;
+      out += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${1.7 * f.scale}" fill="url(#stamenGrad)"/>`;
+    }
+    // center pistil
+    out += `<circle cx="0" cy="0" r="${2.4 * f.scale}" fill="#c88e1a"/>`;
+    out += `<circle cx="0" cy="0" r="${1.1 * f.scale}" fill="#fff3a0" opacity="0.9"/>`;
+    out += `</g>`;
+
+    out += `  </g>`; // .bloom
+    out += `</g>`;   // translate to bloom
+
+    return out;
+  }
+
+  function buildGround() {
+    let out = '';
+    // mound
+    out += `<ellipse cx="200" cy="498" rx="240" ry="32" fill="url(#groundGrad)"/>`;
+    // grass blades
+    out += `<g class="grass">`;
+    for (let i = 0; i < 46; i++) {
+      const x = 20 + (i / 45) * 360 + (Math.random() * 6 - 3);
+      const h = 8 + Math.random() * 14;
+      const sway = (Math.random() * 6 - 3);
+      out += `<path class="grass-blade" d="M ${x.toFixed(1)} 488 Q ${(x + sway).toFixed(1)} ${(488 - h/2).toFixed(1)} ${(x + sway*1.4).toFixed(1)} ${(488 - h).toFixed(1)}" stroke="#2a4a26" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="${(0.5 + Math.random()*0.4).toFixed(2)}" style="animation-delay:${(Math.random()*3).toFixed(2)}s"/>`;
+    }
+    out += `</g>`;
+    return out;
+  }
+
+  // assemble the garden SVG
+  let svgInner = buildDefs();
+  svgInner += buildGround();
+  // sort flowers so smaller/outer ones go behind first? Actually paint order: outer flowers behind center.
+  // Order: 4, 5, 2, 3, 1 (center on top)
+  const renderOrder = ['f4', 'f5', 'f2', 'f3', 'f1'];
+  renderOrder.forEach(id => {
+    const f = flowers.find(x => x.id === id);
+    svgInner += buildFlower(f);
+  });
+
+  const gardenEl = document.getElementById('garden');
+  gardenEl.innerHTML = `<svg viewBox="0 0 400 520" preserveAspectRatio="xMidYEnd meet" xmlns="http://www.w3.org/2000/svg">${svgInner}</svg>`;
+
+  /* ============================================================
+     STAR RATING
+     ============================================================ */
+  const ratingLabels = [
+    '',
+    'Are you Autistic?',
+    "New phone who's this?",
+    'Fuck the Ferris Wheel',
+    'Non Coqueto',
+    'Absolutely perfect ✨'
+  ];
+  let rating = 0;
+
+  const starsEl = document.getElementById('stars');
+  const ratingLabelEl = document.getElementById('ratingLabel');
+
+  // 5-pointed star path
+  const STAR_PATH = "M12 2.5 L14.6 9 L21.7 9.6 L16.3 14.3 L18 21.2 L12 17.5 L6 21.2 L7.7 14.3 L2.3 9.6 L9.4 9 Z";
+
+  for (let i = 1; i <= 5; i++) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'star-btn';
+    btn.setAttribute('aria-label', `${i} star${i>1?'s':''}`);
+    btn.dataset.value = i;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${STAR_PATH}"/></svg>`;
+
+    btn.addEventListener('click', () => setRating(i));
+    btn.addEventListener('mouseenter', () => previewRating(i));
+    btn.addEventListener('mouseleave', clearPreview);
+    btn.addEventListener('touchstart', () => previewRating(i), { passive: true });
+
+    starsEl.appendChild(btn);
+  }
+
+  function setRating(val) {
+    rating = val;
+    Array.from(starsEl.children).forEach((s, idx) => {
+      s.classList.toggle('active', idx < val);
+      s.classList.remove('preview');
+    });
+    ratingLabelEl.textContent = ratingLabels[val];
+    ratingLabelEl.style.color = '#f5c6d8';
+  }
+
+  function previewRating(val) {
+    Array.from(starsEl.children).forEach((s, idx) => {
+      if (!s.classList.contains('active')) {
+        s.classList.toggle('preview', idx < val);
+      }
+    });
+  }
+
+  function clearPreview() {
+    Array.from(starsEl.children).forEach(s => s.classList.remove('preview'));
+  }
+
+  /* ============================================================
+     SUBMIT
+     ============================================================ */
+  document.getElementById('submitBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('submitBtn');
+    const comment = document.getElementById('comment').value.trim();
+
+    if (rating === 0) {
+      ratingLabelEl.textContent = 'Please pick at least one star ✨';
+      ratingLabelEl.style.color = '#f5c6d8';
+      ratingLabelEl.animate(
+        [{ transform: 'translateX(0)' }, { transform: 'translateX(-6px)' },
+         { transform: 'translateX(6px)' }, { transform: 'translateX(0)' }],
+        { duration: 350 }
+      );
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const payload = {
+      rating,
+      comment,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+
+    const isDemoMode = GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+    if (isDemoMode) {
+      console.log('[DEMO MODE — no URL configured]', payload);
+      setTimeout(showThanks, 700);
+      return;
+    }
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.error('Submit error:', err);
+    }
+    showThanks();
+  });
+
+  function showThanks() {
+    document.body.classList.add('submitted');
+    document.getElementById('scene3').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
